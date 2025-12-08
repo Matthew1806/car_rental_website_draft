@@ -1,0 +1,140 @@
+/* ========================================
+   ADMIN USER FORM STYLES
+   ======================================== */
+
+.admin-user-form {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 40px;
+    background: linear-gradient(145deg, #ffffff 0%, #f9f9f9 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 1px solid #E8E8E8;
+}
+
+.admin-user-form h1 {
+    color: #1E1E1E;
+    font-size: 2em;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.admin-user-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.admin-userform-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-userform-field label {
+    font-weight: 600;
+    color: #1E1E1E;
+    font-size: 0.95em;
+}
+
+.admin-userform-input {
+    padding: 12px 15px;
+    border: 2px solid #E8E8E8;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    background-color: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-userform-input:focus {
+    outline: none;
+    border-color: #8B1538;
+    box-shadow: 0 0 0 3px rgba(139, 21, 56, 0.1);
+}
+
+/* Button container for horizontal alignment */
+.admin-userform-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* Unique button class for admin user form */
+.admin-userform-submit-btn {
+    background: linear-gradient(135deg, #8B1538 0%, #6B0D28 100%);
+    color: white;
+    padding: 14px 40px;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(139, 21, 56, 0.3);
+    flex: 1;
+    text-align: center;
+}
+
+.admin-userform-submit-btn:hover {
+    background: linear-gradient(135deg, #6B0D28 0%, #4B0A1A 100%);
+    box-shadow: 0 8px 25px rgba(139, 21, 56, 0.4);
+    transform: translateY(-2px);
+}
+
+.admin-userform-submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(139, 21, 56, 0.3);
+}
+
+/* Back button styling */
+.admin-userform-back-btn {
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+    color: white;
+    padding: 14px 40px;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-userform-back-btn:hover {
+    background: linear-gradient(135deg, #5a6268 0%, #4a5258 100%);
+    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.4);
+    transform: translateY(-2px);
+}
+
+.admin-userform-back-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-user-form {
+        padding: 30px;
+        margin: 20px;
+    }
+
+    .admin-user-form h1 {
+        font-size: 1.5em;
+    }
+
+    .admin-userform-submit-btn {
+        padding: 11px 20px;
+        font-size: 0.85em;
+    }
+}

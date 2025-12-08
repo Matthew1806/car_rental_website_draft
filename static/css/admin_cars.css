@@ -1,0 +1,410 @@
+/* ========================================
+   ADMIN CARS STYLES
+   (Admin Cars Management Page)
+   ======================================== */
+
+.admin-cars {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.admin-cars h1 {
+    color: #8B1538;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+    text-align: center;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.admin-cars h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(45deg, #8B1538, #6B0D28);
+    border-radius: 2px;
+}
+
+.admin-cars > p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+.cars-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    animation: slideIn 0.5s ease-out;
+}
+
+.cars-table thead {
+    background: linear-gradient(135deg, #8B1538, #6B0D28);
+    color: white;
+}
+
+.cars-table th {
+    padding: 18px 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.cars-table th:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.cars-table tbody tr {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+}
+
+.cars-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.cars-table tbody tr:hover {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    transform: scale(1.01);
+    box-shadow: 0 4px 15px rgba(139, 21, 56, 0.1);
+}
+
+.cars-table tbody tr:hover td {
+    color: #8B1538;
+}
+
+.cars-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.cars-table tbody tr:nth-child(even):hover {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.cars-table td {
+    padding: 18px 15px;
+    color: #333;
+    font-size: 0.95em;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.cars-table td:first-child {
+    font-weight: 700;
+    color: #8B1538;
+}
+
+/* Status Badge Styles */
+.status-available {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: #27AE60;
+    color: white;
+}
+
+.status-rented {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: #C0392B;
+    color: white;
+}
+
+.status-maintenance {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: #D68910;
+    color: white;
+}
+
+/* Action Links */
+.cars-action-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.cars-action-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: #007bff;
+    transition: width 0.3s ease;
+}
+
+.cars-action-link:hover {
+    color: #0056b3;
+    background: rgba(0, 123, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.cars-action-link:hover::before {
+    width: 80%;
+}
+
+/* Delete Button */
+.cars-delete-btn {
+    background: linear-gradient(45deg, #dc3545, #c82333);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.cars-delete-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.cars-delete-btn:hover {
+    background: linear-gradient(45deg, #c82333, #a02622);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+}
+
+.cars-delete-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.cars-delete-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Add Car Link */
+.add-car-link {
+    text-align: center;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.add-car-link .admincars-action-btn {
+    background: linear-gradient(45deg, #8B1538, #6B0D28);
+    color: white;
+    padding: 14px 28px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(139, 21, 56, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.add-car-link .admincars-action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.add-car-link .admincars-action-btn:hover::before {
+    left: 100%;
+}
+
+.add-car-link .admincars-action-btn:hover {
+    background: linear-gradient(45deg, #6B0D28, #4B0A1A);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(139, 21, 56, 0.4);
+}
+
+.add-car-link .admincars-action-btn:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+/* Back Link */
+.cars-back-link {
+    text-align: center;
+    margin-top: 30px;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.cars-back-link a {
+    color: #8B1538;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.back-link a::before {
+    content: '← ';
+    margin-right: 5px;
+    transition: transform 0.3s ease;
+}
+
+.back-link a:hover {
+    color: #6B0D28;
+    background: rgba(139, 21, 56, 0.1);
+    transform: translateX(-5px);
+}
+
+.back-link a:hover::before {
+    transform: translateX(-5px);
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-cars {
+        padding: 20px 15px;
+    }
+
+    .admin-cars h1 {
+        font-size: 2em;
+    }
+
+    .cars-table {
+        font-size: 0.85em;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+
+    .cars-table thead,
+    .cars-table tbody {
+        display: table;
+        width: 100%;
+    }
+
+    .cars-table th,
+    .cars-table td {
+        padding: 12px 10px;
+        min-width: 100px;
+    }
+
+    .cars-table th:first-child,
+    .cars-table td:first-child {
+        min-width: 60px;
+    }
+
+    .cars-table th:last-child,
+    .cars-table td:last-child {
+        min-width: 150px;
+    }
+
+    .cars-delete-btn {
+        padding: 6px 12px;
+        font-size: 0.75em;
+        white-space: nowrap;
+    }
+
+    .add-car-link .action-btn {
+        padding: 12px 24px;
+        font-size: 0.9em;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .back-link a {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+}

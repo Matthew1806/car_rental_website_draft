@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+
+{% block title %}Booking Details - Rent A Car{% endblock %}
+
+{% block content %}
+<div class="admin-booking-details">
+    <h1>Booking Details</h1>
+
+    <div class="admindetails-booking-info">
+        <h2>Booking Information</h2>
+        <p><strong>Booking ID:</strong> #{{ booking.id }}</p>
+        <p><strong>Submitted At:</strong> {{ booking.submitted_at.strftime('%B %d, %Y at %H:%M') }}</p>
+        <p><strong>Status:</strong> <span class="admindetails-status-{{ booking.status.lower() }}">{{ booking.status }}</span></p>
+    </div>
+
+    <div class="user-info">
+        <h2>User Information</h2>
+        <p><strong>Full Name:</strong> {{ user.name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Contact Number:</strong> {{ booking.contact }}</p>
+    </div>
+
+    <div class="car-info">
+        <h2>Car Information</h2>
+        <p><strong>Vehicle:</strong> {{ car.name }}</p>
+        <p><strong>Price:</strong> {{ car.price }}</p>
+        <p><strong>Description:</strong> {{ car.specs }}</p>
+        <p><strong>Specifications:</strong> {{ car.transmission }} | {{ car.fuel }} | {{ car.capacity }} Seats | {{ car.engine }} | {{ car.mileage }} | {{ car.color }}</p>
+        <p><strong>Pickup Date:</strong> {{ booking.pickup_date.strftime('%B %d, %Y') }}</p>
+        <p><strong>Return Date:</strong> {{ booking.return_date.strftime('%B %d, %Y') }}</p>
+        {% if booking.notes %}
+        <p><strong>Additional Notes:</strong> {{ booking.notes }}</p>
+        {% endif %}
+    </div>
+
+    {% if booking.id_file or booking.license_file %}
+    <div class="uploaded-files">
+        <h2>Uploaded Documents</h2>
+        {% if booking.id_file %}
+        <p><strong>ID Document:</strong> <a href="{{ url_for('uploaded_file', filename=booking.id_file) }}" target="_blank">📄 View ID</a></p>
+        {% endif %}
+        {% if booking.license_file %}
+        <p><strong>License Document:</strong> <a href="{{ url_for('uploaded_file', filename=booking.license_file) }}" target="_blank">📄 View License</a></p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if booking.payment_method %}
+    <div class="payment-info">
+        <h2>Payment Information</h2>
+        <p><strong>Payment Method:</strong> {{ booking.payment_method }}</p>
+        <p><strong>Payment Status:</strong> <span class="admindetails-status-{{ booking.payment_status.lower() }}">{{ booking.payment_status }}</span></p>
+    </div>
+    {% endif %}
+
+    <div class="status-update">
+        <h2>Update Booking Status</h2>
+        {% if booking.payment_method %}
+        <p class="warning-message" style="background: #fff3cd; border: 1px solid #ffc107; padding: 10px; border-radius: 5px; margin: 10px 0;">
+            ✓ Payment method selected: <strong>{{ booking.payment_method }}</strong>. Cannot change status back to Pending.
+        </p>
+        {% endif %}
+        {% if booking.status == 'Rejected' %}
+        <p class="warning-message" style="background: #f8d7da; border: 1px solid #dc3545; padding: 10px; border-radius: 5px; margin: 10px 0;">
+            ⚠️ This booking is <strong>Rejected</strong> and status cannot be changed (final status).
+        </p>
+        {% elif booking.status == 'Completed' %}
+        <p class="warning-message" style="background: #d4edda; border: 1px solid #28a745; padding: 10px; border-radius: 5px; margin: 10px 0;">
+            ✓ This booking is <strong>Completed</strong> and status cannot be changed (final status).
+        </p>
+        {% endif %}
+        
+        <form method="POST" action="{{ url_for('admin_update_booking_status', booking_id=booking.id) }}" id="status-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div>
+                <label for="status">Select New Status:</label>
+                <select name="status" id="status" {% if booking.status in ['Rejected', 'Completed'] %}disabled{% endif %}>
+                    <option value="Pending" {% if booking.status == 'Pending' %}selected{% endif %}>
+                        Pending
+                    </option>
+                    <option value="Approved" {% if booking.status == 'Approved' %}selected{% endif %}>
+                        Approved
+                    </option>
+                    <option value="Rejected" {% if booking.status == 'Rejected' %}selected{% endif %}>
+                        Rejected
+                    </option>
+                    <option value="Returned" {% if booking.status == 'Returned' %}selected{% endif %}>
+                        Returned
+                    </option>
+                    <option value="Completed" {% if booking.status == 'Completed' %}selected{% endif %}>
+                        Completed
+                    </option>
+                </select>
+            </div>
+            <button type="submit" class="update-btn" {% if booking.status in ['Rejected', 'Completed'] %}disabled{% endif %}>Update Status</button>
+        </form>
+    </div>
+    
+    <script>
+        // Status transition validation
+        const statusSelect = document.getElementById('status');
+        const statusForm = document.getElementById('status-form');
+        const currentStatus = '{{ booking.status }}';
+        const hasPayment = {{ 'true' if booking.payment_method else 'false' }};
+        
+        // Disable invalid options based on current status
+        function updateStatusOptions() {
+            const options = statusSelect.options;
+            
+            // Clear all disabled states first
+            for (let i = 0; i < options.length; i++) {
+                options[i].disabled = false;
+            }
+            
+            // Apply rules based on current status
+            if (currentStatus === 'Pending') {
+                // From Pending: can only go to Approved or Rejected
+                if (hasPayment) {
+                    // If payment method exists, cannot go back to Pending
+                    options[0].disabled = true; // Pending
+                }
+                options[3].disabled = true; // Returned
+                options[4].disabled = true; // Completed
+            } 
+            else if (currentStatus === 'Approved') {
+                // From Approved: can only go to Returned
+                options[0].disabled = true; // Pending
+                options[2].disabled = true; // Rejected
+                options[4].disabled = true; // Completed
+            }
+            else if (currentStatus === 'Rejected') {
+                // Rejected is final - disable all
+                for (let i = 0; i < options.length; i++) {
+                    if (options[i].value !== 'Rejected') {
+                        options[i].disabled = true;
+                    }
+                }
+            }
+            else if (currentStatus === 'Returned') {
+                // From Returned: cannot go back to Pending, Approved, or Rejected
+                options[0].disabled = true; // Pending
+                options[1].disabled = true; // Approved
+                options[2].disabled = true; // Rejected
+            }
+            else if (currentStatus === 'Completed') {
+                // Completed is final - disable all
+                for (let i = 0; i < options.length; i++) {
+                    if (options[i].value !== 'Completed') {
+                        options[i].disabled = true;
+                    }
+                }
+            }
+        }
+        
+        // Apply rules on page load
+        updateStatusOptions();
+        
+        // Validate on form submit
+        statusForm.addEventListener('submit', function(e) {
+            const selectedStatus = statusSelect.value;
+            
+            // Check if trying to select a disabled option
+            const selectedOption = statusSelect.options[statusSelect.selectedIndex];
+            if (selectedOption.disabled) {
+                e.preventDefault();
+                alert('This status transition is not allowed.');
+                return false;
+            }
+            
+            // Additional validation
+            if (currentStatus === 'Pending') {
+                if (selectedStatus !== 'Pending' && selectedStatus !== 'Approved' && selectedStatus !== 'Rejected') {
+                    e.preventDefault();
+                    alert('From Pending, you can only Approve or Reject the booking.');
+                    return false;
+                }
+            } else if (currentStatus === 'Approved') {
+                if (selectedStatus !== 'Approved' && selectedStatus !== 'Returned') {
+                    e.preventDefault();
+                    alert('From Approved, you can only mark as Returned.');
+                    return false;
+                }
+            } else if (currentStatus === 'Rejected') {
+                if (selectedStatus !== 'Rejected') {
+                    e.preventDefault();
+                    alert('Cannot change status from Rejected (final status).');
+                    return false;
+                }
+            } else if (currentStatus === 'Returned') {
+                if (selectedStatus === 'Pending' || selectedStatus === 'Approved' || selectedStatus === 'Rejected') {
+                    e.preventDefault();
+                    alert('Cannot go back from Returned status.');
+                    return false;
+                }
+            } else if (currentStatus === 'Completed') {
+                if (selectedStatus !== 'Completed') {
+                    e.preventDefault();
+                    alert('Cannot change status from Completed (final status).');
+                    return false;
+                }
+            }
+            
+            // Check payment method restriction
+            if (selectedStatus === 'Pending' && hasPayment) {
+                e.preventDefault();
+                alert('Cannot change status to Pending because a payment method has been selected.');
+                return false;
+            }
+        });
+    </script>
+
+    <div class="details-back-link">
+        <a href="{{ url_for('admin_bookings') }}">Back to Bookings List</a>
+        <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

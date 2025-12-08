@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Available Cars - Rent A Car{% endblock %}
+
+{% block content %}
+<section class="cars-section">
+    <h2>🚗 Available Cars</h2>
+    <p>Choose from our wide range of premium vehicles for your next adventure. All cars are fully insured and well-maintained.</p>
+
+    <div class="cars-grid">
+        {% for car in cars %}
+        <div class="car-card">
+            <!-- Car Image -->
+            <div style="position: relative; height: 200px; overflow: hidden;">
+                {% if car.image %}
+                    <img src="{{ url_for('static', filename=car.image) }}" alt="{{ car.name }}">
+                {% else %}
+                    <img src="{{ url_for('static', filename='images/cars/city.jpg') }}" alt="Car Image">
+                {% endif %}
+            </div>
+
+            <!-- Car Info -->
+            <h3>{{ car.name }}</h3>
+            
+            <!-- Price -->
+            <p style="font-size: 1.5em; font-weight: 700; color: #a63d2d; margin-bottom: 15px;">{{ car.price }}<span style="font-size: 0.7em; color: #666; font-weight: normal;"></span></p>
+
+            <!-- Rating -->
+            <div class="car-rating">
+                {% if car.average_rating %}
+                <div class="stars">
+                    {% for i in range(1, 6) %}
+                        {% if i <= car.average_rating|int %}
+                            <i class="fas fa-star star-filled"></i>
+                        {% else %}
+                            <i class="fas fa-star star-empty"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <a href="{{ url_for('car_reviews', car_id=car.id) }}" style="font-size: 0.85em; color: #666;">{{ car.average_rating }} ({{ car.review_count }} reviews)</a>
+                {% else %}
+                <div class="no-reviews">
+                    <p style="font-size: 0.85em; color: #999; font-style: italic;">No reviews yet</p>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Car Details -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 15px 0; padding: 15px 0; border-top: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0; text-align: center;">
+                <div>
+                    <p style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Passengers</p>
+                    <p style="font-weight: 600; color: #a63d2d;">{{ car.capacity }}</p>
+                </div>
+                <div>
+                    <p style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Transmission</p>
+                    <p style="font-weight: 600; color: #a63d2d;">{{ car.transmission }}</p>
+                </div>
+                <div>
+                    <p style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Fuel</p>
+                    <p style="font-weight: 600; color: #a63d2d;">{{ car.fuel }}</p>
+                </div>
+            </div>
+            <!-- Actions -->
+            <div class="cars-card-actions">
+                <a href="{{ url_for('car_details', car_id=car.id) }}" class="cars-card-viewdetails-button">View Details</a>
+                <a href="{{ url_for('book') }}" class="cars-card-booknow-button">Book Now</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if not cars %}
+    <div style="text-align: center; padding: 60px 20px;">
+        <p style="font-size: 1.2em; color: #666; margin-bottom: 20px;">No cars available at the moment.</p>
+        <a href="{{ url_for('home') }}" class="cars-noresults-home-button">Return Home</a>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,142 @@
+/* ========================================
+   REGISTER.HTML STYLES
+   (Registration Page)
+   ======================================== */
+
+.register-section {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 40px;
+    background: linear-gradient(145deg, #ffffff 0%, #f9f9f9 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 1px solid #E8E8E8;
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.register-header h2 {
+    color: #8B1538;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.register-header p {
+    font-size: 1.2em;
+    color: #1E1E1E;
+    line-height: 1.6;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.register-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.register-field label {
+    font-weight: 600;
+    color: #1E1E1E;
+    display: block;
+}
+
+.register-input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #E8E8E8;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    background-color: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-input:focus {
+    outline: none;
+    border-color: #8B1538;
+    box-shadow: 0 0 0 3px rgba(139, 21, 56, 0.1);
+}
+
+.register-btn {
+    background: linear-gradient(45deg, #8B1538, #6B0D28);
+    color: white;
+    padding: 16px 32px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 15px rgba(139, 21, 56, 0.3);
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.register-btn:hover {
+    background: linear-gradient(45deg, #6B0D28, #4B0A1A);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 21, 56, 0.5);
+}
+
+.register-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #E8E8E8;
+}
+
+.register-footer p {
+    color: #1E1E1E;
+    font-size: 1em;
+}
+
+.register-footer a {
+    color: #8B1538;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.register-footer a:hover {
+    color: #6B0D28;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .register-section {
+        padding: 30px;
+        margin: 20px;
+    }
+
+    .register-header h2 {
+        font-size: 2em;
+    }
+}
+
+/* Unique button class for register page */
+.btn-auth-primary {
+    background: linear-gradient(45deg, #8B1538, #6B0D28);
+    color: white;
+    padding: 16px 32px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(139, 21, 56, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-auth-primary:hover {
+    background: linear-gradient(45deg, #6B0D28, #4B0A1A);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 21, 56, 0.5);
+}

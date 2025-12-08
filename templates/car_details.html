@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ car.name }} - Car Details{% endblock %}
+
+{% block content %}
+<section class="car-details-section">
+    <h2>{{ car.name }}</h2>
+
+    <div class="car-details-container">
+        <div class="car-image-gallery">
+            <!-- Main Image -->
+            {% if car.image %}
+                <img src="{{ url_for('static', filename=car.image) }}" alt="{{ car.name }}" class="car-detail-image">
+            {% else %}
+                <img src="{{ url_for('static', filename='images/cars/city.jpg') }}" alt="Default Car" class="car-detail-image">
+            {% endif %}
+            
+            <div class="details-action-buttons">
+                <a href="{{ url_for('book') }}" class="details-proceedrent-button">Proceed to Rent</a>
+                <a href="{{ url_for('cars_page') }}" class="details-backtocars-button">Back to Cars</a>
+            </div>
+        </div>
+
+        <div class="car-info">
+            <div class="car-description">
+                <h3>Description</h3>
+                <p>{{ car.specs }}</p>
+            </div>
+
+            <div class="car-specs">
+                <h3>Specifications</h3>
+                <p><strong>Price:</strong> {{ car.price }}</p>
+                <p><strong>Transmission:</strong> {{ car.transmission }}</p>
+                <p><strong>Fuel Type:</strong> {{ car.fuel }}</p>
+                <p><strong>Capacity:</strong> {{ car.capacity }}</p>
+                <p><strong>Engine:</strong> {{ car.engine }}</p>
+                <p><strong>Mileage:</strong> {{ car.mileage }}</p>
+                <p><strong>Color:</strong> {{ car.color }}</p>
+            </div>
+
+            <div class="rental-requirements">
+                <h4>Rental Requirements:</h4>
+                <ul>
+                    <li>Valid Driver's License</li>
+                    <li>Government-issued ID</li>
+                    <li>Minimum age: 21 years</li>
+                    <li>Credit card for security deposit</li>
+                </ul>
+            </div>
+
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

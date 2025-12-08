@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Review Booking{% endblock %}
+
+{% block content %}
+<section style="max-width: 800px; margin: 60px auto; padding: 20px;">
+    <h2 style="margin-bottom: 10px;">Review Your Booking</h2>
+    <p style="color: #666; margin-bottom: 30px;">Share your feedback and rate your experience</p>
+    
+    <div style="background: white; border: 1px solid #E8E8E8; border-radius: 10px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+        <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #E8E8E8;">
+            <h3 style="margin-bottom: 15px;">Booking Details</h3>
+            <p style="margin: 8px 0;"><strong>Car:</strong> {{ car.name }}</p>
+            <p style="margin: 8px 0;"><strong>Pickup Date:</strong> {{ booking.pickup_date.strftime('%B %d, %Y') }}</p>
+            <p style="margin: 8px 0;"><strong>Return Date:</strong> {{ booking.return_date.strftime('%B %d, %Y') }}</p>
+        </div>
+
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="review-field">
+                {{ form.rating.label(class="review-label") }}
+                {{ form.rating(class="review-select") }}
+                {% if form.rating.errors %}
+                    <div class="review-error">
+                        {% for error in form.rating.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="review-field">
+                {{ form.comment.label(class="review-label") }}
+                {{ form.comment(class="review-textarea", rows=4) }}
+                {% if form.comment.errors %}
+                    <div class="review-error">
+                        {% for error in form.comment.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="review-actions">
+                <a href="{{ url_for('my_bookings') }}" class="review-back-btn">Back to My Bookings</a>
+                {{ form.submit(class="review-submit-btn") }}
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,184 @@
+/* ========================================
+   ADMIN USERS STYLES
+   (Admin Users Management Page)
+   ======================================== */
+
+.admin-users {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.admin-users h1 {
+    color: #8B1538;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.admin-users p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+.add-user-link {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.add-user-link .adminusers-action-btn {
+    background: linear-gradient(45deg, #8B1538, #6B0D28);
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.add-user-link .adminusers-action-btn:hover {
+    background: linear-gradient(45deg, #6B0D28, #4B0A1A);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(139, 21, 56, 0.3);
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.users-table th,
+.users-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.users-table th {
+    background: linear-gradient(135deg, #8B1538, #6B0D28);
+    color: white;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.users-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.users-table td {
+    color: #333;
+}
+
+.admin-badge {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.user-badge {
+    background: linear-gradient(45deg, #6c757d, #5a6268);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.toggle-admin-btn {
+    background: linear-gradient(45deg, #ffc107, #e0a800);
+    color: #212529;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    margin-left: 10px;
+}
+
+.toggle-admin-btn:hover {
+    background: linear-gradient(45deg, #e0a800, #d39e00);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+}
+
+.users-action-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
+
+.users-action-link:hover {
+    color: #0056b3;
+}
+
+.users-delete-btn {
+    background: linear-gradient(45deg, #dc3545, #c82333);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.users-delete-btn:hover {
+    background: linear-gradient(45deg, #c82333, #a02622);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+.users-back-link {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.users-back-link a {
+    color: #8B1538;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.users-back-link a:hover {
+    color: #6B0D28;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-users {
+        padding: 15px;
+    }
+
+    .admin-users h1 {
+        font-size: 2em;
+    }
+
+    .users-table {
+        font-size: 0.85em;
+    }
+
+    .users-table th,
+    .users-table td {
+        padding: 10px;
+    }
+}

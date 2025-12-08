@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}Reviews — {{ car.name }}{% endblock %}
+
+{% block content %}
+<section class="reviews-section-modern">
+    <div class="reviews-container">
+        <!-- Header -->
+        <div class="reviews-header-modern">
+            <div class="header-content">
+                <h1 class="reviews-title">Customer Reviews</h1>
+                <p class="reviews-subtitle">{{ car.name }}</p>
+                <div class="header-meta">
+                    <span class="review-count"><i class="fas fa-comment-dots"></i> {{ car.review_count or 0 }} review{{ 's' if (car.review_count|int > 1) else '' }}</span>
+                    <span class="divider">•</span>
+                    <span class="avg-rating"><i class="fas fa-star"></i> {{ car.average_rating or 'N/A' }}/5 Average</span>
+                </div>
+            </div>
+            <div class="rating-badge">
+                <div class="badge-stars">
+                    {% for i in range(1,6) %}
+                        <i class="fas fa-star" style="color: {% if i <= (car.average_rating|int if car.average_rating else 0) %}#FFD700{% else %}#E8E8E8{% endif %}; font-size: 20px;"></i>
+                    {% endfor %}
+                </div>
+                <div class="badge-number">{{ car.average_rating or 'N/A' }}</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="reviews-content">
+            <!-- Reviews List -->
+            <div class="reviews-list-modern">
+                <h2 class="list-title">Latest Reviews</h2>
+                {% if reviews and reviews|length > 0 %}
+                    {% for review in reviews %}
+                    <article class="review-card-modern">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">{{ (review.author or 'A')[0]|upper }}</div>
+                                <div class="reviewer-details">
+                                    <h4 class="reviewer-name">{{ review.author or 'Anonymous Customer' }}</h4>
+                                    <p class="review-date"><i class="fas fa-calendar-alt"></i> {{ review.created_at }}</p>
+                                </div>
+                            </div>
+                            <div class="review-rating">
+                                <div class="stars-display">
+                                    {% for i in range(1,6) %}
+                                        <i class="fas fa-star" style="color: {% if i <= review.rating %}#FFD700{% else %}#E8E8E8{% endif %};"></i>
+                                    {% endfor %}
+                                </div>
+                                <span class="rating-text">{{ review.rating }}/5</span>
+                            </div>
+                        </div>
+                        <p class="review-text">{{ review.comment or 'No comment provided.' }}</p>
+                    </article>
+                    {% endfor %}
+                {% else %}
+                    <div class="no-reviews-placeholder">
+                        <i class="fas fa-comments"></i>
+                        <h3>No Reviews Yet</h3>
+                        <p>Be the first to share your experience with this vehicle. Your feedback helps other customers make informed decisions.</p>
+                        <a href="{{ url_for('book') }}" class="reviews-book-btn">Book & Leave Review</a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="reviews-sidebar-modern">
+                <!-- Car Info Card -->
+                <div class="sidebar-card">
+                    <h3 class="card-title">About This Vehicle</h3>
+                    <div class="car-info-box">
+                        <p class="car-specs">{{ car.transmission }}, {{ car.capacity }}</p>
+                        <div class="price-box">
+                            <span class="price-label">DAILY RATE</span>
+                            <span class="price-value">{{ car.price if car.price.startswith('₱') else '₱' + car.price }}</span>
+                        </div>
+                        <div class="reviewsmodern-action-buttons">
+                            <a href="{{ url_for('car_details', car_id=car.id) }}" class="btn-secondary-modern">
+                                <i class="fas fa-eye"></i> View Details
+                            </a>
+                            <a href="{{ url_for('book') }}" class="btn-primary-modern">
+                                <i class="fas fa-calendar-check"></i> Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rating Summary Card -->
+                <div class="sidebar-card">
+                    <h3 class="card-title">Rating Summary</h3>
+                    <div class="rating-summary">
+                        <div class="summary-item">
+                            <span class="summary-label">Average Rating</span>
+                            <span class="summary-value">{{ car.average_rating or 'N/A' }}/5</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Total Reviews</span>
+                            <span class="summary-value">{{ car.review_count or 0 }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Share Card -->
+                <div class="sidebar-card share-card">
+                    <h3 class="card-title">Share Your Experience</h3>
+                    <p class="share-text">Have you rented this vehicle? Share your thoughts and help other customers.</p>
+                    <a href="{{ url_for('my_bookings') }}" class="btn-outline-modern">
+                        <i class="fas fa-pen"></i> Write Review
+                    </a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock %}

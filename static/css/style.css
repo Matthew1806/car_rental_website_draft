@@ -1,0 +1,38 @@
+/* ========================================
+   MASTER CSS FILE - IMPORTS ALL MODULES
+   ======================================== */
+
+/* Global Styles */
+@import url('./global.css');
+
+/* Base Layout (Navbar & Footer) */
+@import url('./base.css');
+
+/* Page Styles */
+@import url('./index.css');
+@import url('./cars.css');
+@import url('./car_details.css');
+@import url('./car_reviews.css');
+@import url('./book.css');
+@import url('./about_contact.css');
+@import url('./confirmation.css');
+@import url('./login.css');
+@import url('./register.css');
+@import url('./review.css');
+@import url('./rate.css');
+
+/* User Pages */
+@import url('./my_bookings.css');
+@import url('./edit_booking.css');
+
+/* Admin Pages */
+@import url('./admin_users.css');
+@import url('./admin_dashboard.css');
+@import url('./admin_cars.css');
+@import url('./admin_car_form.css');
+@import url('./admin_user_form.css');
+@import url('./admin_bookings.css');
+@import url('./admin_booking_details.css');
+
+/* Responsive Design (Must be last) */
+@import url('./responsive.css');

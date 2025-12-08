@@ -1,0 +1,320 @@
+/* ========================================
+   ADMIN BOOKING DETAILS STYLES
+   ======================================== */
+
+.admin-booking-details {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.admin-booking-details h1 {
+    font-size: 2.2em;
+    color: #000000;
+    font-weight: 700;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+/* Info Cards */
+.admindetails-booking-info,
+.user-info,
+.car-info,
+.uploaded-files,
+.payment-info {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-left: 4px solid #8B1538;
+}
+
+.admin-booking-details h2 {
+    font-size: 1.2em;
+    color: #8B1538;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.admin-booking-details p {
+    color: #444444;
+    font-size: 0.95em;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.admin-booking-details strong {
+    color: #333333;
+    font-weight: 600;
+}
+
+/* Status Badge */
+.admindetails-status-pending {
+    display: inline-block;
+    padding: 5px 12px;
+    background-color: #F39C12;
+    color: white;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.8em;
+}
+
+.admindetails-status-approved {
+    display: inline-block;
+    padding: 5px 12px;
+    background-color: #27AE60;
+    color: white;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.8em;
+}
+
+.admindetails-status-rejected {
+    display: inline-block;
+    padding: 5px 12px;
+    background-color: #C0392B;
+    color: white;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.8em;
+}
+
+.details-status-returned {
+    display: inline-block;
+    padding: 5px 12px;
+    background-color: #3498DB;
+    color: white;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.8em;
+}
+
+.details-status-completed {
+    display: inline-block;
+    padding: 5px 12px;
+    background-color: #16A085;
+    color: white;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.8em;
+}
+
+/* Uploaded Files Links */
+.uploaded-files a {
+    color: #8B1538;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.uploaded-files a:hover {
+    text-decoration: underline;
+}
+
+/* Payment Info Section */
+.payment-info {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-left: 4px solid #8B1538;
+}
+
+.payment-info h2 {
+    font-size: 1.2em;
+    color: #8B1538;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.payment-info p {
+    color: #444444;
+    font-size: 0.95em;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.payment-info strong {
+    color: #333333;
+    font-weight: 600;
+}
+
+.admindetails-status-paid {
+    display: inline-block;
+    padding: 5px 12px;
+    background-color: #27AE60;
+    color: white;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.8em;
+}
+
+.admindetails-status-unpaid {
+    display: inline-block;
+    padding: 5px 12px;
+    background-color: #E67E22;
+    color: white;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.8em;
+}
+
+/* Warning Message */
+.warning-message {
+    background-color: #FFF3CD;
+    border: 1px solid #FFE69C;
+    color: #856404;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+/* Status Update Section */
+.status-update {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-left: 4px solid #8B1538;
+}
+
+.status-update form {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.status-update label {
+    font-size: 0.9em;
+    color: #333333;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.status-update select {
+    padding: 10px 12px;
+    font-size: 0.95em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #FFFFFF;
+    color: #333333;
+    cursor: pointer;
+}
+
+.status-update select:focus {
+    outline: none;
+    border-color: #8B1538;
+}
+
+.update-btn {
+    padding: 10px 22px;
+    background: #8B1538;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.update-btn:hover {
+    background: #6B0D28;
+}
+
+/* Back Links */
+.details-back-link {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.details-back-link a {
+    color: #8B1538;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: 1px solid #8B1538;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.back-link a:hover {
+    background-color: #8B1538;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-booking-details {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .admin-booking-details h1 {
+        font-size: 1.6em;
+        margin-bottom: 25px;
+    }
+
+    .admindetails-booking-info,
+    .user-info,
+    .car-info,
+    .uploaded-files,
+    .payment-info,
+    .status-update {
+        padding: 20px;
+    }
+
+    .status-update form {
+        flex-direction: column;
+    }
+
+    .update-btn {
+        width: 100%;
+    }
+
+    .details-back-link {
+        flex-direction: column;
+    }
+
+    .details-back-link a {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-booking-details h1 {
+        font-size: 1.4em;
+    }
+
+    .admindetails-booking-info,
+    .user-info,
+    .car-info,
+    .uploaded-files,
+    .payment-info,
+    .status-update {
+        padding: 15px;
+    }
+
+    .admin-booking-details h2 {
+        font-size: 1em;
+    }
+
+    .status-update select {
+        font-size: 0.9em;
+    }
+
+    .update-btn {
+        padding: 10px 16px;
+        font-size: 0.85em;
+    }
+}

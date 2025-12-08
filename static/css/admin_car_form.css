@@ -1,0 +1,307 @@
+/* ========================================
+   ADMIN CAR FORM STYLES
+   ======================================== */
+
+.admin-car-form {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.admin-car-form h1 {
+    font-size: 2.5em;
+    color: #000000;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.admin-car-form h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #8B1538, #6B0D28);
+    border-radius: 2px;
+}
+
+/* Form Container */
+.admin-car-form form {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    border: 1px solid #E8E8E8;
+}
+
+/* Form Group */
+.admin-carform-field {
+    margin-bottom: 28px;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-carform-field label {
+    font-size: 0.95em;
+    color: #333333;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-carform-input {
+    padding: 14px 18px;
+    font-size: 1em;
+    border: 2px solid #E8E8E8;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    background-color: #FAFAFA;
+}
+
+.admin-carform-input::placeholder {
+    color: #BBBBBB;
+    opacity: 1;
+    font-weight: 400;
+}
+
+.admin-carform-input:focus::placeholder {
+    color: #DDDDDD;
+}
+
+.admin-carform-input:focus {
+    outline: none;
+    border-color: #8B1538;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(139, 21, 56, 0.1);
+}
+
+.admin-carform-input:hover {
+    border-color: #8B1538;
+}
+
+/* Textarea specific styling */
+textarea.admin-carform-input {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Error Messages */
+.admin-carform-error {
+    color: #E74C3C;
+    font-size: 0.85em;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+}
+
+.admin-carform-error::before {
+    content: '⚠';
+    font-size: 1.1em;
+}
+
+/* Form Sections - Group related fields */
+.form-section {
+    margin-bottom: 35px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.form-section-title {
+    font-size: 1.2em;
+    color: #8B1538;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Submit Button */
+.admin-car-form .admin-carform-submit-btn {
+    padding: 14px 40px;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+/* Back Link */
+.carform-back-link {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.carform-back-link a {
+    color: #8B1538;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.carform-back-link a::before {
+    content: '←';
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.carform-back-link a:hover {
+    background-color: rgba(139, 21, 56, 0.1);
+    padding-left: 0px;
+}
+
+.carform-back-link a:hover::before {
+    transform: translateX(-4px);
+}
+
+/* File Input Styling */
+input[type="file"].admin-carform-input {
+    padding: 12px;
+    cursor: pointer;
+}
+
+input[type="file"].admin-carform-input::file-selector-button {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #8B1538 0%, #6B0D28 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 12px;
+    transition: all 0.3s ease;
+}
+
+input[type="file"].admin-carform-input::file-selector-button:hover {
+    background: linear-gradient(135deg, #6B0D28 0%, #4B0A1A 100%);
+}
+
+/* Select Input Styling */
+select.admin-carform-input {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238B1538' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-car-form {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .admin-car-form h1 {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+    }
+
+    .admin-car-form form {
+        padding: 25px;
+    }
+
+    .admin-carform-field {
+        margin-bottom: 20px;
+    }
+
+    .admin-carform-field label {
+        font-size: 0.9em;
+    }
+
+    .admin-carform-input {
+        padding: 12px 15px;
+        font-size: 0.95em;
+    }
+
+    .admin-car-form .admin-carform-submit-btn {
+        padding: 12px 30px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-car-form {
+        margin: 15px auto;
+        padding: 10px;
+    }
+
+    .admin-car-form h1 {
+        font-size: 1.5em;
+        margin-bottom: 25px;
+    }
+
+    .admin-car-form form {
+        padding: 20px;
+    }
+
+    .admin-carform-input {
+        padding: 11px 13px;
+        font-size: 0.9em;
+    }
+
+    .admin-car-form .admin-carform-submit-btn {
+        padding: 11px 20px;
+        font-size: 0.85em;
+    }
+
+    .carform-back-link a {
+        font-size: 0.85em;
+    }
+}
+
+/* Unique button class for admin car form */
+.admin-carform-submit-btn {
+    background: linear-gradient(135deg, #8B1538 0%, #6B0D28 100%);
+    color: white;
+    padding: 14px 40px;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(139, 21, 56, 0.3);
+    display: inline-block;
+}
+
+.admin-carform-submit-btn:hover {
+    background: linear-gradient(135deg, #6B0D28 0%, #4B0A1A 100%);
+    box-shadow: 0 8px 25px rgba(139, 21, 56, 0.4);
+    transform: translateY(-2px);
+}
+
+.admin-carform-submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(139, 21, 56, 0.3);
+}

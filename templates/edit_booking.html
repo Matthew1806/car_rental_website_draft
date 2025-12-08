@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Booking - Rent A Car{% endblock %}
+
+{% block content %}
+<section class="edit-booking-section">
+    <h2>Edit Booking</h2>
+    <p>Update your booking details below.</p>
+
+    <div class="edit-booking-card">
+        <div class="editbooking-booking-info">
+            <h3>{{ booking.car.name }}</h3>
+            <p><strong>Current Status:</strong> <span class="status-{{ booking.status.lower() }}">{{ booking.status }}</span></p>
+            <p><strong>Submitted:</strong> {{ booking.submitted_at.strftime('%B %d, %Y at %I:%M %p') }}</p>
+        </div>
+
+        <form method="POST" class="edit-form">
+            <div class="editbooking-form-field">
+                <label for="pickup_date">Pick-up Date</label>
+                <input type="date" id="pickup_date" name="pickup_date" value="{{ booking.pickup_date.isoformat() }}" required min="{{ booking.submitted_at.date().isoformat() }}">
+            </div>
+            <div class="editbooking-form-field">
+                <label for="return_date">Return Date</label>
+                <input type="date" id="return_date" name="return_date" value="{{ booking.return_date.isoformat() }}" required min="{{ booking.pickup_date.isoformat() }}">
+            </div>
+            <div class="editbooking-form-field">
+                <label for="notes">Notes</label>
+                <textarea id="notes" name="notes" rows="4">{{ booking.notes or '' }}</textarea>
+            </div>
+            <div class="editbooking-actions-container">
+                <button type="submit" class="editbooking-update-button">Update Booking</button>
+                <a href="{{ url_for('my_bookings') }}" class="editbooking-cancel-button">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

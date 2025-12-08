@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard - Rent A Car{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard">
+    <div class="dashboard-header">
+        <h1>🚗 Admin Dashboard</h1>
+        <p>Welcome back, {{ current_user.name }}! Here's an overview of your car rental system.</p>
+        <div class="dashboard-time">
+            <span id="current-time"></span>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stats-container">
+        <div class="stat-card" data-stat="cars">
+            <div class="stat-icon">🚙</div>
+            <h3>Total Cars</h3>
+            <p class="dashboard-stat-number">{{ total_cars }}</p>
+            <a href="{{ url_for('admin_cars') }}" class="stat-link">Manage Cars →</a>
+        </div>
+        <div class="stat-card" data-stat="bookings">
+            <div class="stat-icon">📋</div>
+            <h3>Total Bookings</h3>
+            <p class="dashboard-stat-number">{{ total_bookings }}</p>
+            <a href="{{ url_for('admin_bookings') }}" class="stat-link">View Bookings →</a>
+        </div>
+        <div class="stat-card" data-stat="users">
+            <div class="stat-icon">👥</div>
+            <h3>Total Users</h3>
+            <p class="dashboard-stat-number">{{ total_users }}</p>
+            <a href="{{ url_for('admin_users') }}" class="stat-link">Manage Users →</a>
+        </div>
+    </div>
+
+    <!-- Dashboard Grid -->
+    <div class="dashboard-grid">
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <div class="section-header">
+                <h2>⚡ Quick Actions</h2>
+            </div>
+            <div class="dashboard-action-buttons">
+                <a href="{{ url_for('admin_add_car') }}" class="dashboard-action-btn primary">
+                    <span class="btn-icon">➕</span>
+                    <span class="btn-text">Add New Car</span>
+                </a>
+                <a href="{{ url_for('admin_add_user') }}" class="dashboard-action-btn secondary">
+                    <span class="btn-icon">👤</span>
+                    <span class="btn-text">Add New User</span>
+                </a>
+                <a href="{{ url_for('admin_bookings') }}" class="dashboard-action-btn tertiary">
+                    <span class="btn-icon">📋</span>
+                    <span class="btn-text">View All Bookings</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bookings Grid (2x2) -->
+    <div class="bookings-grid">
+        <!-- Pending Bookings -->
+        <div class="pending-bookings">
+            <div class="dashboard-section-header">
+                <h2>Pending Bookings</h2>
+                <a href="{{ url_for('admin_bookings', status='Pending') }}" class="dashboard-view-all">View All</a>
+            </div>
+            {% if pending_bookings %}
+            <div class="bookings-list">
+                {% for booking in pending_bookings %}
+                <div class="booking-item" data-status="{{ booking.status.lower() }}">
+                    <div class="dashboard-booking-info">
+                        <div class="booking-primary">
+                            <span class="booking-id">#{{ booking.id }}</span>
+                            <span class="booking-user">{{ booking.name }}</span>
+                        </div>
+                        <div class="booking-secondary">
+                            <span class="booking-car">{{ booking.car.name }}</span>
+                            <span class="booking-dates">{{ booking.pickup_date.strftime('%b %d') }} - {{ booking.return_date.strftime('%b %d') }}</span>
+                        </div>
+                    </div>
+                    <div class="booking-status">
+                        <span class="status-badge status-{{ booking.status.lower() }}">{{ booking.status }}</span>
+                        <a href="{{ url_for('admin_booking_details', booking_id=booking.id) }}" class="action-btn-small">View</a>
+                        <form method="POST" action="{{ url_for('admin_delete_booking', booking_id=booking.id) }}" class="delete-form" onsubmit="return confirm('Are you sure you want to delete this booking?')" style="display: inline;">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                            <button type="submit" class="action-btn-small delete-btn">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <div class="empty-icon">📋</div>
+                <p>No pending bookings found.</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Approved Bookings -->
+        <div class="approved-bookings">
+            <div class="dashboard-section-header">
+                <h2>✅ Approved Bookings</h2>
+                <a href="{{ url_for('admin_bookings', status='Approved') }}" class="dashboard-view-all">View All</a>
+            </div>
+            {% if approved_bookings %}
+            <div class="bookings-list">
+                {% for booking in approved_bookings %}
+                <div class="booking-item" data-status="{{ booking.status.lower() }}">
+                    <div class="dashboard-booking-info">
+                        <div class="booking-primary">
+                            <span class="booking-id">#{{ booking.id }}</span>
+                            <span class="booking-user">{{ booking.name }}</span>
+                        </div>
+                        <div class="booking-secondary">
+                            <span class="booking-car">{{ booking.car.name }}</span>
+                            <span class="booking-dates">{{ booking.pickup_date.strftime('%b %d') }} - {{ booking.return_date.strftime('%b %d') }}</span>
+                        </div>
+                    </div>
+                    <div class="booking-status">
+                        <span class="status-badge dashboard-status-{{ booking.status.lower() }}">{{ booking.status }}</span>
+                        <a href="{{ url_for('admin_booking_details', booking_id=booking.id) }}" class="action-btn-small">View</a>
+                        <form method="POST" action="{{ url_for('admin_delete_booking', booking_id=booking.id) }}" class="delete-form" onsubmit="return confirm('Are you sure you want to delete this booking?')" style="display: inline;">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                            <button type="submit" class="action-btn-small delete-btn">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <div class="empty-icon">✅</div>
+                <p>No approved bookings yet.</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Completed Bookings History -->
+        <div class="completed-bookings">
+            <div class="dashboard-section-header">
+                <h2>Completed Bookings</h2>
+                <a href="{{ url_for('admin_bookings', status='Completed') }}" class="dashboard-view-all">View All</a>
+            </div>
+            {% if completed_bookings %}
+            <div class="bookings-list">
+                {% for booking in completed_bookings %}
+                <div class="booking-item" data-status="{{ booking.status.lower() }}">
+                    <div class="dashboard-booking-info">
+                        <div class="booking-primary">
+                            <span class="booking-id">#{{ booking.id }}</span>
+                            <span class="booking-user">{{ booking.name }}</span>
+                        </div>
+                        <div class="booking-secondary">
+                            <span class="booking-car">{{ booking.car.name }}</span>
+                            <span class="booking-dates">{{ booking.pickup_date.strftime('%b %d') }} - {{ booking.return_date.strftime('%b %d') }}</span>
+                        </div>
+                    </div>
+                    <div class="booking-status">
+                        <span class="status-badge dashboard-status-{{ booking.status.lower() }}">{{ booking.status }}</span>
+                        <a href="{{ url_for('admin_booking_details', booking_id=booking.id) }}" class="action-btn-small">View</a>
+                        <form method="POST" action="{{ url_for('admin_delete_booking', booking_id=booking.id) }}" class="delete-form" onsubmit="return confirm('Are you sure you want to delete this booking?')" style="display: inline;">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                            <button type="submit" class="action-btn-small delete-btn">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <div class="empty-icon">📚</div>
+                <p>No completed bookings yet.</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Rejected Bookings History -->
+        <div class="rejected-bookings">
+            <div class="dashboard-section-header">
+                <h2>Rejected Bookings</h2>
+                <a href="{{ url_for('admin_bookings', status='Rejected') }}" class="dashboard-view-all">View All</a>
+            </div>
+            {% if rejected_bookings %}
+            <div class="bookings-list">
+                {% for booking in rejected_bookings %}
+                <div class="booking-item" data-status="{{ booking.status.lower() }}">
+                    <div class="dashboard-booking-info">
+                        <div class="booking-primary">
+                            <span class="booking-id">#{{ booking.id }}</span>
+                            <span class="booking-user">{{ booking.name }}</span>
+                        </div>
+                        <div class="booking-secondary">
+                            <span class="booking-car">{{ booking.car.name }}</span>
+                            <span class="booking-dates">{{ booking.pickup_date.strftime('%b %d') }} - {{ booking.return_date.strftime('%b %d') }}</span>
+                        </div>
+                    </div>
+                    <div class="booking-status">
+                        <span class="status-badge dashboard-status-{{ booking.status.lower() }}">{{ booking.status }}</span>
+                        <a href="{{ url_for('admin_booking_details', booking_id=booking.id) }}" class="action-btn-small">View</a>
+                        <form method="POST" action="{{ url_for('admin_delete_booking', booking_id=booking.id) }}" class="delete-form" onsubmit="return confirm('Are you sure you want to delete this booking?')" style="display: inline;">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                            <button type="submit" class="action-btn-small delete-btn">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <div class="empty-icon">❌</div>
+                <p>No rejected bookings yet.</p>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+<script>
+// Interactive dashboard features
+document.addEventListener('DOMContentLoaded', function() {
+    // Update current time
+    function updateTime() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        });
+        document.getElementById('current-time').textContent = timeString;
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    // Add hover effects to stat cards
+    const statCards = document.querySelectorAll('.stat-card');
+    statCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+
+
+    // Add click effects to action buttons
+    const actionBtns = document.querySelectorAll('.dashboard-action-btn');
+    actionBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+    });
+});
+</script>
+{% endblock %}

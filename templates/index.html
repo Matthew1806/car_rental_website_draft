@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Rent A Car{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-wrapper">
+        <div class="hero-content">
+            <!-- Left Content -->
+            <div class="hero-text-content">
+                {% if current_user.is_authenticated %}
+                    <div class="welcome-text">
+                        👋 Welcome, {{ current_user.name }}!
+                    </div>
+                {% endif %}
+                
+                <h1 class="hero-title">Fast, Safe & <span class="accent-text">Reliable</span></h1>
+                
+                <p class="hero-description">
+                    Book your ride today and travel conveniently within Lipa & Batangas. Premium fleet, 24/7 support, and easy bookings.
+                </p>
+                
+                <div class="index-hero-buttons-container">
+                    <a href="{{ url_for('cars_page') }}" class="index-hero-browse-button">
+                        <span class="index-hero-browse-icon">🚗</span> Browse Cars
+                    </a>
+                    <a href="{{ url_for('about_contact') }}" class="index-hero-learnmore-button">
+                        Learn More
+                    </a>
+                </div>
+                
+                <!-- Feature List -->
+                <ul class="index-hero-featurelist">
+                    <li><span class="index-hero-featurelist-checkmark">✓</span> Fully Insured Vehicles</li>
+                    <li><span class="index-hero-featurelist-checkmark">✓</span> 24/7 Customer Support</li>
+                    <li><span class="index-hero-featurelist-checkmark">✓</span> Easy Online Booking</li>
+                    <li><span class="index-hero-featurelist-checkmark">✓</span> Premium Fleet</li>
+                </ul>
+            </div>
+            
+            <!-- Right Content - Car Image -->
+            <div class="hero-image-content">
+                <img src="{{ url_for('static', filename='images/additional/hero-car.png') }}" alt="Premium Car" class="hero-car-image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="section-container">
+        <div class="index-section-header">
+            <h2>Why Choose Rent A Car?</h2>
+            <p>We provide the best car rental experience with unmatched service and quality</p>
+        </div>
+        
+        <div class="features-grid">
+            <!-- Feature 1 -->
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Fully Insured</h3>
+                <p>All vehicles come with comprehensive insurance coverage for your peace of mind</p>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="feature-card">
+                <div class="feature-icon">📞</div>
+                <h3>24/7 Support</h3>
+                <p>Round-the-clock customer service available whenever you need assistance</p>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Easy Booking</h3>
+                <p>Simple online booking process in just a few clicks from your device</p>
+            </div>
+            
+            <!-- Feature 4 -->
+            <div class="feature-card">
+                <div class="feature-icon">🚗</div>
+                <h3>Premium Fleet</h3>
+                <p>Well-maintained vehicles from top manufacturers for your comfort</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="section-container">
+        <h2>Ready to Hit the Road?</h2>
+        <p>
+            Book your perfect vehicle today and experience the freedom of the open road with our premium rental service.
+        </p>
+        <a href="{{ url_for('book') }}" class="index-cta-startjourney-button">
+            Start Your Journey →
+        </a>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="section-container">
+        <div class="stats-grid">
+            <!-- Stat 1 -->
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <p>Happy Customers</p>
+            </div>
+            
+            <!-- Stat 2 -->
+            <div class="stat-item">
+                <div class="stat-number">10+</div>
+                <p>Premium Vehicles</p>
+            </div>
+            
+            <!-- Stat 3 -->
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <p>Customer Support</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

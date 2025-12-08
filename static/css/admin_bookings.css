@@ -1,0 +1,294 @@
+/* ========================================
+   ADMIN BOOKINGS STYLES
+   (Manage Bookings Page - Interactive Design)
+   ======================================== */
+
+.admin-bookings-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Page Header */
+.bookings-page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.bookings-page-header h1 {
+    color: #8B1538;
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.bookings-page-header p {
+    color: #666;
+    font-size: 1.1em;
+}
+
+/* Table Container */
+.bookings-table-container {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+/* Table Styles */
+.adminbookings-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.adminbookings-table thead {
+    background: linear-gradient(135deg, #8B1538 0%, #6B0D28 100%);
+}
+
+.adminbookings-table thead th {
+    color: white;
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.adminbookings-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.adminbookings-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.adminbookings-table tbody tr:hover {
+    background: linear-gradient(135deg, #fff5f7 0%, #fef9fa 100%);
+    transform: scale(1.002);
+    box-shadow: 0 2px 8px rgba(139, 21, 56, 0.08);
+}
+
+.adminbookings-table tbody td {
+    padding: 18px 15px;
+    color: #333;
+    font-size: 0.95em;
+    vertical-align: middle;
+}
+
+.adminbookings-table tbody td small {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Status Badges */
+.adminbookings-status-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.adminbookings-status-pending {
+    background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+    color: white;
+}
+
+.adminbookings-status-approved {
+    background: linear-gradient(135deg, #4CAF50 0%, #45A049 100%);
+    color: white;
+}
+
+.adminbookings-status-rejected {
+    background: linear-gradient(135deg, #F44336 0%, #D32F2F 100%);
+    color: white;
+}
+
+.adminbookings-status-completed {
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+    color: white;
+}
+
+.adminbookings-status-returned {
+    background: linear-gradient(135deg, #9E9E9E 0%, #757575 100%);
+    color: white;
+}
+
+/* Action Buttons */
+.adminbookings-inline-form {
+    display: inline;
+    margin: 0;
+}
+
+.adminbookings-action-btn {
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 4px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.adminbookings-btn-edit {
+    background: linear-gradient(135deg, #007BFF 0%, #0056B3 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+.adminbookings-btn-edit:hover {
+    background: linear-gradient(135deg, #0056B3 0%, #004085 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+}
+
+.adminbookings-btn-delete {
+    background: linear-gradient(135deg, #DC3545 0%, #C82333 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+.adminbookings-btn-delete:hover {
+    background: linear-gradient(135deg, #C82333 0%, #BD2130 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+/* Back Link */
+.adminbookings-back-link {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.adminbookings-back-link a {
+    color: #8B1538;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1em;
+    padding: 12px 24px;
+    border: 2px solid #8B1538;
+    border-radius: 8px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.adminbookings-back-link a:hover {
+    background: #8B1538;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 21, 56, 0.3);
+}
+
+/* Empty State */
+.empty-bookings {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.empty-bookings p {
+    color: #666;
+    font-size: 1.2em;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .adminbookings-table {
+        font-size: 0.9em;
+    }
+    
+    .adminbookings-table thead th,
+    .adminbookings-table tbody td {
+        padding: 15px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-bookings-container {
+        padding: 20px 15px;
+    }
+
+    .bookings-page-header h1 {
+        font-size: 2em;
+    }
+
+    /* Mobile Table - Card Layout */
+    .bookings-table-container {
+        overflow-x: auto;
+    }
+
+    .adminbookings-table thead {
+        display: none;
+    }
+
+    .adminbookings-table tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .adminbookings-table tbody td {
+        display: block;
+        text-align: right;
+        padding: 12px 15px;
+        border-bottom: 1px solid #f0f0f0;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    .adminbookings-table tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        font-weight: 600;
+        color: #8B1538;
+        text-align: left;
+    }
+
+    .adminbookings-table tbody td:last-child {
+        border-bottom: none;
+        text-align: center;
+        padding-left: 15px;
+    }
+
+    .adminbookings-table tbody td:last-child::before {
+        display: none;
+    }
+
+    .adminbookings-action-btn {
+        display: block;
+        margin: 8px 0;
+        width: 100%;
+    }
+
+    .adminbookings-inline-form {
+        display: block;
+        margin: 8px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .bookings-page-header h1 {
+        font-size: 1.8em;
+    }
+
+    .adminbookings-action-btn {
+        padding: 10px 16px;
+        font-size: 0.95em;
+    }
+}

@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Now - Rent A Car{% endblock %}
+
+{% block content %}
+<!-- Booking date logic runs from static/script.js -->
+<section class="book-section-form">
+    <div class="book-header">
+        <h2>🚗 Rent Your Perfect Car Today</h2>
+        <p>Fill out the form below to secure your vehicle reservation. We make booking simple and fast!</p>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" class="booking-form">
+        {{ form.hidden_tag() }}
+
+        <div class="book-section">
+            <h3>👤 Personal Information</h3>
+            <div class="book-row">
+                <div class="book-field">
+                    {{ form.name.label }}
+                    {{ form.name(placeholder="Enter your full name", class="book-input") }}
+                    {% if form.name.errors %}
+                        <div class="error">{{ form.name.errors[0] }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="book-field">
+                    {{ form.email.label }}
+                    {{ form.email(placeholder="your.email@example.com", class="book-input") }}
+                    {% if form.email.errors %}
+                        <div class="error">{{ form.email.errors[0] }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="book-field">
+                {{ form.contact.label }}
+                {{ form.contact(placeholder="+63 XXX XXX XXXX", class="book-input") }}
+                {% if form.contact.errors %}
+                    <div class="error">{{ form.contact.errors[0] }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="book-section">
+            <h3>📅 Rental Details</h3>
+            <p class="section-note">Note: Unclickable dates are already reserved. Overlapping dates are not allowed.</p>
+            <div class="book-row">
+                <div class="book-field">
+                    {{ form.car.label }}
+                    <select id="car" name="car" class="book-input" required>
+                        <option value="">-- Select a car --</option>
+                        {% for c in cars %}
+                        {%- set num = c.price | replace('₱','') | replace(',','') | replace('/day','') | replace(' per day','') -%}
+                        <option value="{{ c.id }}" data-price="{{ num.strip() }}">{{ c.name }} - {{ c.price }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if form.car.errors %}
+                        <div class="error">{{ form.car.errors[0] }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="book-field">
+                    {{ form.pickup.label }}
+                    {{ form.pickup(class="book-input") }}
+                    {% if form.pickup.errors %}
+                        <div class="error">{{ form.pickup.errors[0] }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="book-field">
+                {{ form.return_date.label }}
+                {{ form.return_date(class="book-input") }}
+                {% if form.return_date.errors %}
+                    <div class="error">{{ form.return_date.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="book-field">
+                <label>Total</label>
+                <div id="totalDisplay" style="font-weight:700; font-size:1.1rem;">₱0</div>
+            </div>
+        </div>
+
+        <div class="book-section">
+            <h3>📄 Documents Required</h3>
+            <p class="section-note">Please upload clear photos of your valid ID and driver's license for verification.</p>
+            <div class="book-row">
+                <div class="book-field">
+                    {{ form.id_file.label }}
+                    {{ form.id_file }}
+                    {% if form.id_file.errors %}
+                        <div class="error">{{ form.id_file.errors[0] }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="book-field">
+                    {{ form.license_file.label }}
+                    {{ form.license_file }}
+                    {% if form.license_file.errors %}
+                        <div class="error">{{ form.license_file.errors[0] }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="book-section">
+            <h3>💬 Additional Notes</h3>
+            <div class="book-field">
+                {{ form.notes.label }}
+                {{ form.notes(placeholder="Any special requests or additional information?", class="book-input") }}
+            </div>
+        </div>
+
+        <div class="book-submit">
+            {{ form.submit(class="book-submit-btn") }}
+        </div>
+    </form>
+</section>
+{% endblock %}

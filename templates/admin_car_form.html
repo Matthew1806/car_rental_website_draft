@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }} - Rent A Car{% endblock %}
+
+{% block content %}
+<div class="admin-car-form">
+    <h1>{{ title }}</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <!-- Basic Information Section -->
+        <div class="form-section">
+            <div class="form-section-title">
+                <i class="fas fa-car"></i> Basic Information
+            </div>
+
+            <div class="admin-carform-field">
+                {{ form.name.label }}
+                {{ form.name(class="admin-carform-input", placeholder="Enter car name") }}
+                {% if form.name.errors %}
+                    <div class="admin-carform-error">{{ form.name.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="admin-carform-field">
+                {{ form.price.label }}
+                {{ form.price(class="admin-carform-input", placeholder="e.g., 2,000") }}
+                {% if form.price.errors %}
+                    <div class="admin-carform-error">{{ form.price.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="admin-carform-field">
+                {{ form.specs.label }}
+                {{ form.specs(class="admin-carform-input", placeholder="Car Description") }}
+                {% if form.specs.errors %}
+                    <div class="admin-carform-error">{{ form.specs.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="admin-carform-field">
+                {{ form.color.label }}
+                {{ form.color(class="admin-carform-input", placeholder="e.g., White, Black, Silver, etc.") }}
+                {% if form.color.errors %}
+                    <div class="admin-carform-error">{{ form.color.errors[0] }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Vehicle Details Section -->
+        <div class="form-section">
+            <div class="form-section-title">
+                <i class="fas fa-cogs"></i> Vehicle Details
+            </div>
+
+            <div class="admin-carform-field">
+                {{ form.transmission.label }}
+                {{ form.transmission(class="admin-carform-input") }}
+                {% if form.transmission.errors %}
+                    <div class="admin-carform-error">{{ form.transmission.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="admin-carform-field">
+                {{ form.fuel.label }}
+                {{ form.fuel(class="admin-carform-input") }}
+                {% if form.fuel.errors %}
+                    <div class="admin-carform-error">{{ form.fuel.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="admin-carform-field">
+                {{ form.engine.label }}
+                {{ form.engine(class="admin-carform-input", placeholder="e.g., 1.5L 4-Cylinder") }}
+                {% if form.engine.errors %}
+                    <div class="admin-carform-error">{{ form.engine.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="admin-carform-field">
+                {{ form.mileage.label }}
+                {{ form.mileage(class="admin-carform-input", placeholder="e.g., 25 km/l") }}
+                {% if form.mileage.errors %}
+                    <div class="admin-carform-error">{{ form.mileage.errors[0] }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Images Section -->
+        <div class="form-section">
+            <div class="form-section-title">
+                <i class="fas fa-images"></i> Car Images
+            </div>
+
+            <div class="admin-carform-field">
+                {{ form.image.label }}
+                {{ form.image(class="admin-carform-input") }}
+                {% if form.image.errors %}
+                    <div class="admin-carform-error">{{ form.image.errors[0] }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="admin-carform-field">
+            {{ form.submit(class="admin-carform-submit-btn") }}
+        <div class="carform-back-link">
+            <a href="{{ url_for('admin_cars') }}">Back to Cars</a>
+        </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

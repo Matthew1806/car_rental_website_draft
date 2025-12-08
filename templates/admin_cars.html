@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Cars - Rent A Car{% endblock %}
+
+{% block content %}
+<div class="admin-cars">
+    <h1>Manage Cars</h1>
+    <p>View and manage all available cars.</p>
+
+    {% if cars %}
+    <table class="cars-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Transmission</th>
+                <th>Fuel</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in cars %}
+            <tr>
+                <td data-label="ID">{{ car.id }}</td>
+                <td data-label="Name">{{ car.name }}</td>
+                <td data-label="Price">{{ car.price }}</td>
+                <td data-label="Transmission">{{ car.transmission }}</td>
+                <td data-label="Fuel">{{ car.fuel }}</td>
+                <td data-label="Actions">
+                    <a href="{{ url_for('admin_edit_car', car_id=car.id) }}" class="action-link">Edit</a>
+                    <span style="margin: 0 8px; color: #ddd;">|</span>
+                    <form method="POST" action="{{ url_for('admin_delete_car', car_id=car.id) }}" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this car?');">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="cars-delete-btn">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No cars found.</p>
+    {% endif %}
+
+    <div class="add-car-link">
+        <a href="{{ url_for('admin_add_car') }}" class="admincars-action-btn">Add New Car</a>
+    </div>
+
+    <div class="cars-back-link">
+        <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

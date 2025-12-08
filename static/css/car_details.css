@@ -1,0 +1,226 @@
+/* ========================================
+   CAR_DETAILS.HTML STYLES
+   (Car Details Page)
+   ======================================== */
+
+.car-details-section {
+    max-width: 2000px;
+    margin-top: 0px;
+    padding: 20px 20px 20px 20px;
+    background: white;
+    border-radius: 15px;
+}
+
+.car-details-section h2 {
+    text-align: center;
+    color: #8B1538;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    font-weight: 700;
+    padding-top: 20px;
+}
+
+.car-details-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+.car-image-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.car-image-gallery img {
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.car-info {
+    padding: 30px;
+}
+
+.car-info .availability-badge {
+    margin-bottom: 20px;
+}
+
+.car-info h3 {
+    color: #8B1538;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.car-info p {
+    margin-bottom: 15px;
+    font-size: 1em;
+}
+
+.car-info strong {
+    color: #8B1538;
+}
+
+.rental-requirements {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    border-left: 4px solid #8B1538;
+}
+
+.rental-requirements h4 {
+    color: #8B1538;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.rental-requirements ul {
+    list-style: none;
+    padding: 0;
+}
+
+.rental-requirements li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.rental-requirements li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #8B1538;
+    font-weight: bold;
+}
+
+.details-action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.details-proceedrent-button {
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    background: linear-gradient(45deg, #8B1538, #6B0D28);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.details-proceedrent-button:hover {
+    background: linear-gradient(45deg, #6B0D28, #4B0A1A);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(139, 21, 56, 0.3);
+}
+
+.details-backtocars-button {
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    background: #555555;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.details-backtocars-button:hover {
+    background: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(85, 85, 85, 0.3);
+}
+
+/* Responsive for car details */
+@media (max-width: 768px) {
+    .car-details-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .car-info {
+        padding: 20px;
+    }
+
+    .car-details-section h2 {
+        font-size: 2em;
+    }
+
+    .details-action-buttons {
+        flex-direction: column;
+    }
+
+    .details-proceedrent-button {
+        width: 100%;
+    }
+
+    .details-backtocars-button {
+        width: 100%;
+    }
+}
+
+/* Unique button classes for car details page */
+.btn-details-primary {
+    background: linear-gradient(45deg, #8B1538, #6B0D28);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-details-primary:hover {
+    background: linear-gradient(45deg, #6B0D28, #4B0A1A);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(139, 21, 56, 0.3);
+}
+
+.btn-details-secondary {
+    background-color: #555555;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-details-secondary:hover {
+    background-color: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(85, 85, 85, 0.3);
+}

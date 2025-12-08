@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }} - Rent A Car{% endblock %}
+
+{% block content %}
+<div class="admin-user-form">
+    <h1>{{ title }}</h1>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="admin-userform-field">
+            {{ form.name.label }}
+            {{ form.name(class="admin-userform-input") }}
+            {% if form.name.errors %}
+                <div class="error">{{ form.name.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <div class="admin-userform-field">
+            {{ form.email.label }}
+            {{ form.email(class="admin-userform-input") }}
+            {% if form.email.errors %}
+                <div class="error">{{ form.email.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        {% if not is_edit %}
+        <div class="admin-userform-field">
+            {{ form.password.label }}
+            {{ form.password(class="admin-userform-input", placeholder="Enter password (min 6 characters)") }}
+            {% if form.password.errors %}
+                <div class="error">{{ form.password.errors[0] }}</div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <div class="admin-userform-field">
+            {{ form.is_admin.label }}
+            {{ form.is_admin() }}
+            {% if form.is_admin.errors %}
+                <div class="error">{{ form.is_admin.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <div class="admin-userform-buttons">
+            {{ form.submit(class="admin-userform-submit-btn") }}
+            <a href="{{ url_for('admin_users') }}" class="admin-userform-back-btn">Back to Users</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

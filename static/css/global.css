@@ -1,0 +1,128 @@
+/* ========================================
+   GLOBAL STYLES & CSS VARIABLES
+   ======================================== */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 70px;
+    background-color: #FFFFFF;
+    color: #333333;
+    line-height: 1.6;
+    scrollbar-width: thin;
+    scrollbar-color: #8B1538 #E8E8E8;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F0F0F0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8B1538;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6B0D28;
+}
+
+h1, h2, h3, h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: #8B1538;
+}
+
+
+
+/* Status Styles - Removed, use page-specific classes instead */
+
+/* ========================================
+   SECTIONS (Global)
+   ======================================== */
+.about-section, .confirmation-section, .contact-section {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 40px;
+    background: linear-gradient(145deg, #ffffff 0%, #f9f9f9 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 1px solid #E8E8E8;
+}
+
+/* Section styles moved to respective page CSS files */
+
+
+
+/* Main Content */
+main {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+
