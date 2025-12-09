@@ -1,3 +1,36 @@
+// Mobile hamburger menu toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const navMenu = document.getElementById('navMenu');
+
+    if (hamburgerMenu && navMenu) {
+        hamburgerMenu.addEventListener('click', function() {
+            hamburgerMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburgerMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = navMenu.contains(event.target);
+            const isClickInsideHamburger = hamburgerMenu.contains(event.target);
+            
+            if (!isClickInsideNav && !isClickInsideHamburger) {
+                hamburgerMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    }
+});
+
 function toggleMenu() {
     const nav = document.querySelector('.navbar nav');
     nav.classList.toggle('show');
@@ -6,14 +39,6 @@ function toggleMenu() {
         profileLinks.classList.toggle('show');
     }
 }
-
-// Mobile menu toggle for nav-toggle
-document.addEventListener('DOMContentLoaded', function() {
-    const navToggle = document.querySelector('.nav-toggle');
-    if (navToggle) {
-        navToggle.addEventListener('click', toggleMenu);
-    }
-});
 
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');

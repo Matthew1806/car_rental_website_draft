@@ -25,11 +25,19 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <img src="{{ url_for('static', filename='images/header/RentACArLogo.png') }}" alt="Rent A Car Logo" class="logo-image">
+            <img src="{{ url_for('static', filename='images/header/RentACarLogo.png') }}" alt="Rent A Car Logo" class="logo-image">
             <h1>Rent A Car</h1>
         </div>
 
-        <nav>
+        <!-- Hamburger Menu Button for Mobile -->
+        <button class="hamburger-menu" id="hamburgerMenu" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Navigation Links -->
+        <nav class="nav-menu" id="navMenu">
             <a href="{{ url_for('home') }}">Home</a>
             <a href="{{ url_for('cars_page') }}">Browse Cars</a>
             <a href="{{ url_for('about_contact') }}">About & Contact</a>
@@ -43,14 +51,13 @@
                 <a href="{{ url_for('logout') }}">Logout</a>
             {% else %}
                 <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}" class="navbar-getstarted-btn mobile-only">Get Started</a>
             {% endif %}
         </nav>
 
-        <!-- CTA Button -->
-        {% if current_user.is_authenticated %}
-            
-        {% else %}
-            <a href="{{ url_for('register') }}" class="navbar-getstarted-btn">Get Started</a>
+        <!-- CTA Button for Desktop -->
+        {% if not current_user.is_authenticated %}
+            <a href="{{ url_for('register') }}" class="navbar-getstarted-btn-desktop">Get Started</a>
         {% endif %}
     </nav>
 
