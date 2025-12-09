@@ -1,53 +1,45 @@
 // Mobile hamburger menu toggle
 document.addEventListener('DOMContentLoaded', function() {
-    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const hamburger = document.getElementById('hamburgerMenu');
     const navMenu = document.getElementById('navMenu');
 
-    if (hamburgerMenu && navMenu) {
-        console.log('Hamburger menu initialized'); // Debug
-        
-        // Toggle menu when hamburger is clicked
-        hamburgerMenu.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Hamburger clicked'); // Debug
-            hamburgerMenu.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when a link is clicked
-        const navLinks = navMenu.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                // Allow the link to navigate
-                setTimeout(function() {
-                    hamburgerMenu.classList.remove('active');
-                    navMenu.classList.remove('active');
-                }, 100);
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInsideNav = navMenu.contains(event.target);
-            const isClickInsideHamburger = hamburgerMenu.contains(event.target);
-            
-            if (!isClickInsideNav && !isClickInsideHamburger) {
-                if (hamburgerMenu.classList.contains('active')) {
-                    hamburgerMenu.classList.remove('active');
-                    navMenu.classList.remove('active');
-                }
-            }
-        });
-
-        // Close menu on escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' || event.keyCode === 27) {
-                hamburgerMenu.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
+    if (!hamburger || !navMenu) {
+        console.warn('Hamburger or nav menu element not found');
+        return;
     }
+
+    // Toggle menu when hamburger button is clicked
+    hamburger.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a navigation link
+    const navLinks = navMenu.querySelectorAll('a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+
+    // Close menu on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
 });
 
 function toggleMenu() {
