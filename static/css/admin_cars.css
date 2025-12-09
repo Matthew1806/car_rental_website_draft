@@ -364,20 +364,25 @@
         font-size: 0.85em;
         display: block;
         overflow-x: auto;
+        overflow-y: visible;
         -webkit-overflow-scrolling: touch;
         white-space: nowrap;
+        border-collapse: collapse;
     }
 
     .cars-table thead,
-    .cars-table tbody {
+    .cars-table tbody,
+    .cars-table tr {
         display: table;
         width: 100%;
     }
 
     .cars-table th,
     .cars-table td {
-        padding: 12px 10px;
-        min-width: 100px;
+        padding: 12px 10px !important;
+        white-space: nowrap;
+        min-width: 90px;
+        text-align: left;
     }
 
     .cars-table th:first-child,
@@ -387,7 +392,7 @@
 
     .cars-table th:last-child,
     .cars-table td:last-child {
-        min-width: 150px;
+        min-width: 120px;
     }
 
     .cars-delete-btn {

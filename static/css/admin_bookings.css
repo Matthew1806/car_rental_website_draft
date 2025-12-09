@@ -219,66 +219,72 @@
 @media (max-width: 768px) {
     .admin-bookings-container {
         padding: 20px 15px;
+        overflow-x: hidden;
     }
 
     .bookings-page-header h1 {
         font-size: 2em;
     }
 
-    /* Mobile Table - Card Layout */
+    /* Mobile Table - Keep Table Format with Horizontal Scroll */
     .bookings-table-container {
         overflow-x: auto;
+        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 10px;
     }
 
-    .adminbookings-table thead {
-        display: none;
-    }
-
-    .adminbookings-table tbody tr {
+    .adminbookings-table {
         display: block;
-        margin-bottom: 15px;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        overflow: hidden;
+        overflow-x: auto;
+        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        border-collapse: collapse;
     }
 
+    .adminbookings-table thead,
+    .adminbookings-table tbody,
+    .adminbookings-table tr {
+        display: table;
+        width: 100%;
+    }
+
+    .adminbookings-table thead th,
     .adminbookings-table tbody td {
-        display: block;
-        text-align: right;
-        padding: 12px 15px;
-        border-bottom: 1px solid #f0f0f0;
-        position: relative;
-        padding-left: 50%;
-    }
-
-    .adminbookings-table tbody td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 15px;
-        font-weight: 600;
-        color: #8B1538;
+        padding: 12px 10px !important;
+        white-space: nowrap;
+        min-width: 90px;
+        font-size: 0.85em;
         text-align: left;
     }
 
-    .adminbookings-table tbody td:last-child {
-        border-bottom: none;
-        text-align: center;
-        padding-left: 15px;
+    .adminbookings-table thead th {
+        background: linear-gradient(135deg, #8B1538, #6B0D28);
+        color: white;
+        font-weight: 600;
     }
 
-    .adminbookings-table tbody td:last-child::before {
+    .adminbookings-table th:last-child,
+    .adminbookings-table td:last-child {
+        min-width: 120px;
+    }
+
+    .adminbookings-table tbody td::before {
         display: none;
     }
 
     .adminbookings-action-btn {
-        display: block;
-        margin: 8px 0;
-        width: 100%;
+        padding: 8px 10px !important;
+        font-size: 0.8em !important;
+        margin: 0 2px !important;
+        display: inline-block !important;
+        width: auto !important;
     }
 
     .adminbookings-inline-form {
-        display: block;
-        margin: 8px 0;
+        display: inline !important;
+        margin: 0 !important;
     }
 }
 
