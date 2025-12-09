@@ -4,9 +4,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.getElementById('navMenu');
 
     if (hamburgerMenu && navMenu) {
+        console.log('Hamburger menu initialized'); // Debug
+        
         // Toggle menu when hamburger is clicked
         hamburgerMenu.addEventListener('click', function(e) {
+            e.preventDefault();
             e.stopPropagation();
+            console.log('Hamburger clicked'); // Debug
             hamburgerMenu.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
@@ -15,8 +19,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const navLinks = navMenu.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                hamburgerMenu.classList.remove('active');
-                navMenu.classList.remove('active');
+                // Allow the link to navigate
+                setTimeout(function() {
+                    hamburgerMenu.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }, 100);
             });
         });
 
@@ -35,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Close menu on escape key
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
+            if (event.key === 'Escape' || event.keyCode === 27) {
                 hamburgerMenu.classList.remove('active');
                 navMenu.classList.remove('active');
             }

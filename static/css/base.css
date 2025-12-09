@@ -114,6 +114,7 @@
     font-weight: 600;
     transition: all 0.3s ease;
     flex-shrink: 0;
+    display: block !important;
 }
 
 .navbar-getstarted-btn-desktop:hover {
@@ -121,9 +122,10 @@
     transform: translateY(-2px);
 }
 
-/* Hide mobile button by default */
+/* Hide mobile button by default - IMPORTANT */
 .mobile-only {
     display: none !important;
+    visibility: hidden;
 }
 
 /* Profile links in nav menu */
